@@ -4,6 +4,9 @@ public class Message {
 	private int id;
 	private String text;
 
+	public Message() {
+	}
+	
 	public Message(int id, String text) {
 		super();
 		this.id = id;

@@ -10,6 +10,7 @@ public class TestKryo {
 	public static void main(String[] args) {
 		
 //		Log.set(Log.LEVEL_TRACE);
+		
 		final KryoServer kryoServer = new KryoServer();
 		final KryoClient kryoClient = new KryoClient(); 
 		
@@ -35,8 +36,8 @@ public class TestKryo {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-//					kryoClient.send(new Message(i, "Message : " + i));
-					kryoClient.send("Message : " + i);
+					kryoClient.send(new Message(i, "Message : " + i));
+//					kryoClient.send("Message : " + i);
 				}
 				
 			}
