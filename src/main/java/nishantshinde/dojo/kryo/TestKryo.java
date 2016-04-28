@@ -9,7 +9,7 @@ public class TestKryo {
 	
 	public static void main(String[] args) {
 		
-		Log.set(Log.LEVEL_TRACE);
+//		Log.set(Log.LEVEL_TRACE);
 		final KryoServer kryoServer = new KryoServer();
 		final KryoClient kryoClient = new KryoClient(); 
 		
