@@ -65,5 +65,4 @@ public class HelloWorld extends Application {
     	btn.setMaxSize(SIZE, SIZE);
     	return btn;
     }
-    
 }
