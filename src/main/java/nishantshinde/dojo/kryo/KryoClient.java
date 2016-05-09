@@ -9,19 +9,27 @@ import com.esotericsoftware.kryonet.Listener;
 public class KryoClient {
 
 	Client client;
-	public KryoClient() {
-		client = new Client();
+	String serverIpAddress;
+	Integer kryoServerTcpPort;
+	Integer kryoServerUdpPort;
+	
+	public KryoClient(Integer kryoServerTcpPort) {
+		this.client = new Client();
+		this.kryoServerTcpPort = kryoServerTcpPort;
+		KryoHelper.registerClassesWithKryo(client.getKryo());
+	}
+
+	public KryoClient(String serverIpAddress, Integer kryoServerTcpPort, Integer kryoServerUdpPort) {
+		this.client = new Client();
+		this.serverIpAddress = serverIpAddress;
+		this.kryoServerTcpPort = kryoServerTcpPort;
+		this.kryoServerUdpPort = kryoServerUdpPort;
 		KryoHelper.registerClassesWithKryo(client.getKryo());
 	}
 	
 	public void start() {
 		client.start();
-		try {
-			client.connect(1000, "10.109.20.48", 51555, 51777);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+
 	    client.addListener(new Listener() {
 	        public void received (Connection connection, Object object) {
 		           if (object instanceof String) {
@@ -35,6 +43,19 @@ public class KryoClient {
 	     });
 	}
 
+	private void connectToConfiguredServer(String serverIpAddress, int kryoServerTcpPort, int kryoServerUdpPort) {
+		try {
+			client.connect(1000, serverIpAddress, kryoServerTcpPort, kryoServerUdpPort);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void autoConnectToAnyAvailableServer() {
+		
+	}
+	
+	
 	public void send(String message) {
 		System.out.println("Client sending String - " + message);
 		client.sendTCP(message);

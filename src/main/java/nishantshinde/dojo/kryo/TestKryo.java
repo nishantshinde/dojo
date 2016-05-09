@@ -11,8 +11,11 @@ public class TestKryo {
 		
 //		Log.set(Log.LEVEL_TRACE);
 		
-		final KryoServer kryoServer = new KryoServer();
-		final KryoClient kryoClient = new KryoClient(); 
+		int kryoServerTcpPort = 51555;
+		int kryoServerUdpPort = 51777;
+		
+		final KryoServer kryoServer = new KryoServer(kryoServerTcpPort, kryoServerUdpPort);
+		final KryoClient kryoClient = new KryoClient(kryoServerTcpPort);
 		
 		System.out.println("Main thread starting kryo server & client ...");
 		kryoServer.start();
