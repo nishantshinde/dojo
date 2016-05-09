@@ -57,13 +57,26 @@ public class HelloWorld extends Application {
     }
 
     private static final int SIZE = 25;
-    private ToggleButton getDefaultButton(EventHandler toggler) {
-    	ToggleButton btn = new ToggleButton();
+    
+    private BananaButton getDefaultButton(EventHandler toggler) {
+    	BananaButton btn = new BananaButton("");
     	btn.setText(" ");
     	btn.setOnAction(toggler);
     	btn.setMinSize(SIZE, SIZE);
     	btn.setMaxSize(SIZE, SIZE);
     	return btn;
     }
-    
+    class BananaButton extends ToggleButton {
+    	private String data;
+
+		public BananaButton(String data) {
+			super();
+			this.data = data;
+		}
+
+		public String getData() {
+			return data;
+		}
+    	
+    }
 }
