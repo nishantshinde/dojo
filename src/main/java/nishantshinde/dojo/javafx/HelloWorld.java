@@ -66,6 +66,7 @@ public class HelloWorld extends Application {
     	btn.setMaxSize(SIZE, SIZE);
     	return btn;
     }
+
     class BananaButton extends ToggleButton {
     	private String data;
 
