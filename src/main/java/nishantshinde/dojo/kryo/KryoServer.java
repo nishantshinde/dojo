@@ -8,8 +8,13 @@ import com.esotericsoftware.kryonet.Server;
 
 public class KryoServer {
 	Server server;
-	public KryoServer() {
-		server = new Server();
+	int kryoServerTcpPort;
+	int kryoServerUdpPort;
+	
+	public KryoServer(int kryoServerTcpPort, int kryoServerUdpPort) {
+		this.server = new Server();
+		this.kryoServerTcpPort = kryoServerTcpPort;
+		this.kryoServerUdpPort = kryoServerUdpPort;
 		KryoHelper.registerClassesWithKryo(server.getKryo());
 	}
 	
@@ -17,7 +22,7 @@ public class KryoServer {
 		System.out.println("KryoServer starting ... ");
 		server.start();
 		try {
-			server.bind(51555, 51777);
+			server.bind(kryoServerTcpPort, kryoServerUdpPort);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
